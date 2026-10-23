@@ -23,3 +23,6 @@ button.primary{background:#00c8a6;color:#000}button.primary:hover{background:#00
 .e-se-linha{display:flex;gap:.6rem}.e-se-linha button{width:auto;white-space:nowrap}.e-se-linha button:disabled{opacity:.6;cursor:wait}
 .e-se-sugestao ul{margin:.4rem 0 .8rem 1.2rem}.e-se-acoes{display:flex;gap:.6rem}.e-se-acoes button{width:auto;padding:.6rem 1.2rem}
 @media(max-width:600px){.e-se-linha{flex-direction:column}.e-se-linha button{width:100%}}
+.explicacao-topo{display:flex;justify-content:space-between;align-items:center;gap:1rem}.explicacao-topo button{width:auto}
+.explicacao{margin-left:1.2rem}.explicacao li{margin:.35rem 0}
+@media(max-width:600px){.explicacao-topo{flex-direction:column;align-items:stretch}.explicacao-topo button{width:100%}}

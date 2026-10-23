@@ -5,6 +5,7 @@ import { AjustesCenario } from "./AjustesCenario.jsx";
 import { PerguntaESe } from "./PerguntaESe.jsx";
 import { CardsResultado } from "./CardsResultado.jsx";
 import { TabelaComparativa } from "./TabelaComparativa.jsx";
+import { ExplicacaoCenarios } from "./ExplicacaoCenarios.jsx";
 import { ExportarBotoes } from "./ExportarBotoes.jsx";
 
 export function Comparador({ base, onReset }) {
@@ -19,7 +20,7 @@ export function Comparador({ base, onReset }) {
   const atual = cs && { preco: base.receita, quantidade: base.contratos, fixo: base.fixo, variavel: cs.variavel };
   const resultados = cs ? [
     { key: "base", label: "Atual", entradas: atual },
-    { key: "desconto", label: `Desconto de ${ajustes.descontoPP} p.p.`, entradas: { ...atual, preco: cs.receitaDesconto, quantidade: ajustes.contratosDesconto } },
+    { key: "desconto", label: `Desconto de ${String(ajustes.descontoPP).replace(".", ",")} p.p.`, entradas: { ...atual, preco: cs.receitaDesconto, quantidade: ajustes.contratosDesconto } },
     { key: "custo", label: `Inadimplência +${ajustes.choqueInad}%`, entradas: { ...atual, variavel: cs.variavelAlta } }
   ].map((c) => {
     const r = analisar(c.entradas);
@@ -37,6 +38,7 @@ export function Comparador({ base, onReset }) {
       {erro ? <p style={{ color: "#f44336" }}>{erro}</p> : <>
         <CardsResultado resultados={resultados} />
         <p className="mt-3"><strong>Insight:</strong> {ajustes.descontoPP} p.p. de desconto muda o resultado em {resultados[1].delta ?? "—"}%; inadimplência +{ajustes.choqueInad}% muda em {resultados[2].delta ?? "—"}%.</p>
+        <ExplicacaoCenarios resultados={resultados} />
         <TabelaComparativa resultados={resultados} atual={atual} />
       </>}
       {cs && <ExportarBotoes onReset={onReset} base={base} ajustes={ajustes} resultados={resultados} />}
