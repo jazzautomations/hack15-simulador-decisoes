@@ -66,3 +66,7 @@ src/
 ## Pendências (hackathon)
 - [ ] Pitch deck: 3 cliques → 3 cenários → insight de margem
 - [ ] GitHub repo + Actions deploy
+
+## Metodologia do time
+
+Como o squad multi-agente se organiza (worktrees, board, red team, cronograma 24h): [METODOLOGIA.md](METODOLOGIA.md)
