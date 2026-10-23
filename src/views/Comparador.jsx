@@ -2,6 +2,7 @@ import React from "react";
 import { cenariosCredito, variacao } from "../lib/credito.js";
 import { analisar, comparar } from "../lib/analise.js";
 import { AjustesCenario } from "./AjustesCenario.jsx";
+import { PerguntaESe } from "./PerguntaESe.jsx";
 import { CardsResultado } from "./CardsResultado.jsx";
 import { TabelaComparativa } from "./TabelaComparativa.jsx";
 import { ExportarBotoes } from "./ExportarBotoes.jsx";
@@ -31,6 +32,7 @@ export function Comparador({ base, onReset }) {
 
   return (
     <div>
+      <PerguntaESe base={base} onAplicar={(novos) => setAjustes((a) => ({ ...a, ...novos }))} />
       <AjustesCenario ajustes={ajustes} onChange={setAjustes} />
       {erro ? <p style={{ color: "#f44336" }}>{erro}</p> : <>
         <CardsResultado resultados={resultados} />
