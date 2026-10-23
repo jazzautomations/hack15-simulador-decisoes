@@ -13,7 +13,7 @@ export function ExportarBotoes({ onReset, base, ajustes, resultados }) {
   const exportarCSV = () => {
     const header = "cenario,receita_por_contrato,contratos,custo_variavel_por_contrato,custo_total,receita,resultado,margem_pct,variacao_pct";
     const rows = resultados.map((r) =>
-      `${r.label},${r.preco},${base.contratos},${r.variavel},${r.custo_total},${r.receita},${r.lucro},${Math.round(r.margem)},${r.delta ?? ""}`
+      `${r.label},${r.preco},${r.quantidade},${r.variavel},${r.custo_total},${r.receita},${r.lucro},${Math.round(r.margem)},${r.delta ?? ""}`
     );
     const csv = [header, ...rows].join("\n");
     const blob = new Blob([csv], { type: "text/csv" });

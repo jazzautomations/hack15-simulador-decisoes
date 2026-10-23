@@ -3,11 +3,20 @@
 input,button,select{width:100%;padding:.9rem;border:1px solid #333;border-radius:8px;background:#111;color:#fff;font-size:1rem;transition:.2s}
 input:focus,button:focus,select:focus{outline:none;border-color:#00c8a6;box-shadow:0 0 0 3px rgba(0,200,166,.2)}
 button{cursor:pointer;font-weight:600}
-.grid{display:grid;gap:1rem}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-.card{background:#111;border:1px solid #222;border-radius:10px;padding:1.2rem}metric{font-size:1.5rem;font-weight:700}label{font-size:.85rem;color:#999;margin-bottom:.3rem;display:block}
+.grid{display:grid;gap:1rem}.grid-2{display:grid;gap:1rem;grid-template-columns:repeat(2,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{background:#111;border:1px solid #222;border-radius:10px;padding:1.2rem}.metric{font-size:1.5rem;font-weight:700}label{font-size:.85rem;color:#999;margin-bottom:.3rem;display:block}
 .scenario-card{border-left:3px solid #00c8a6}.scenario-card.desconto{border-left-color:#ff9e6d}.scenario-card.custo{border-left-color:#f44336}
 .metric-positive{color:#4caf50}.metric-negative{color:#f44336}.metric-neutral{color:#888}
 button.primary{background:#00c8a6;color:#000}button.primary:hover{background:#00b096}button.secondary{background:#222;color:#e0e0e0}button.secondary:hover{background:#333}
 .mt-3{margin-top:1rem}.mt-5{margin-top:1.5rem}.mb-2{margin-bottom:.5rem}.text-center{text-align:center}
-.diff-positive{background:rgba(76,175,80,.1)}diff-negative{background:rgba(244,67,36,.1)}
-@media(max-width:600px){h1{font-size:1.4rem}.container{padding:1rem}}
+.diff-positive{background:rgba(76,175,80,.1)}.diff-negative{background:rgba(244,67,36,.1)}
+@media(max-width:600px){h1{font-size:1.4rem}.grid-2,.grid-3{grid-template-columns:1fr}.container{padding:1rem}}
+.delta{display:block;font-size:.85rem;font-weight:600}.destaque{border-top:1px solid #222;padding-top:.8rem}
+.tabela-wrap{overflow-x:auto}.tabela{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.tabela th,.tabela td{padding:.55rem .6rem;border-bottom:1px solid #222;text-align:right;vertical-align:top}
+.tabela thead th{color:#999;font-size:.85rem;font-weight:600}.tabela th[scope=row]{text-align:left}
+.linha-btn{width:auto;padding:0;border:0;background:none;color:#e0e0e0;font-weight:500;text-align:left}
+.linha-btn:focus-visible{outline:2px solid #00c8a6;outline-offset:2px;box-shadow:none}
+.linha-destaque td,.linha-destaque th{border-top:2px solid #333;font-weight:700}
+.memoria td{text-align:left;background:#0d0d14}.memoria p{margin:.25rem 0;font-size:.85rem}.memoria code{color:#00c8a6;white-space:normal}
+.scenario-card .grid-2 .metric{font-size:1.05rem}.tabela thead th:first-child{text-align:left}
