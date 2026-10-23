@@ -99,3 +99,10 @@ Campo no topo do comparador: "e se eu der 0,5 p.p. de desconto e a carteira cres
 - Com `OPENAI_API_KEY` e `OPENAI_MODEL` no `.env` (ver `.env.example`), o `npm run dev` expõe `POST /api/interpretar`, que chama a OpenAI (Responses API, saída em JSON Schema estrito). A chave fica só no servidor do Vite.
 - Sem chave, ou se a OpenAI falhar, a tela usa as regras locais de `src/lib/eSe.js` (desconto em p.p., contratos em % ou absolutos, inadimplência em %). A demo funciona offline.
 - A IA só preenche ajustes; todo cálculo continua em `calc.js`/`analise.js`.
+
+## "Explicar diferenças" (opcional com IA)
+
+Botão abaixo dos cards: resume em 2 a 4 frases o que muda em cada cenário, inclusive quantos contratos seriam necessários para empatar.
+
+- Com `OPENAI_API_KEY`/`OPENAI_MODEL`, `POST /api/explicar` envia à OpenAI só o resumo numérico já calculado (`store: false`). O servidor rejeita a resposta se ela citar qualquer número que não esteja nesse resumo.
+- Sem chave, com erro da API ou número rejeitado, o texto é montado pelas regras de `src/lib/explicacao.js`. A tela sempre informa a origem do texto.
