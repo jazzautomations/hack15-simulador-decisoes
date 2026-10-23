@@ -91,3 +91,11 @@ Dados fictícios (já no formulário): contrato R$ 5.000, receita R$ 200, 3.000 
 > "Dar 0,5 p.p. de desconto custa o mesmo que ver a inadimplência subir 50%."
 
 Cálculo em `src/lib/credito.js`, testes em `test/credito.test.js`. Scoring por ML e explicação por LLM ainda não foram implementados.
+
+## "E se…" com IA (opcional)
+
+Campo no topo do comparador: "e se eu der 0,5 p.p. de desconto e a carteira crescer 20%?" vira ajustes de cenário, mostrados para confirmação antes de aplicar.
+
+- Com `OPENAI_API_KEY` e `OPENAI_MODEL` no `.env` (ver `.env.example`), o `npm run dev` expõe `POST /api/interpretar`, que chama a OpenAI (Responses API, saída em JSON Schema estrito). A chave fica só no servidor do Vite.
+- Sem chave, ou se a OpenAI falhar, a tela usa as regras locais de `src/lib/eSe.js` (desconto em p.p., contratos em % ou absolutos, inadimplência em %). A demo funciona offline.
+- A IA só preenche ajustes; todo cálculo continua em `calc.js`/`analise.js`.
