@@ -1,13 +1,19 @@
-// Schema de validação para o #15
+// Schema de validação para o #15 (nicho fintech de crédito)
 // Tudo em JavaScript puro: sem validação externa, HTML5 + regras simples
-export const validarProduto = (data) => {
+const POSITIVOS = { contrato: "contrato médio", receita: "receita por contrato", contratos: "contratos ativos" };
+const NAO_NEGATIVOS = { funding: "funding", cobranca: "custo de cobrança", fixo: "custos fixos" };
+
+export const validarCarteira = (data) => {
   const erros = [];
-  const p = Number(data.preco); const q = Number(data.quantidade);
-  const f = Number(data.fixo); const v = Number(data.variavel);
-  if (data.nome.trim() === "") erros.push("nome é obrigatório");
-  if (isNaN(p) || p <= 0) erros.push("preço deve ser maior que 0");
-  if (isNaN(q) || q < 0) erros.push("quantidade não pode ser negativa");
-  if (isNaN(f) || f < 0) erros.push("custo fixo não pode ser negativo");
-  if (isNaN(v) || v < 0) erros.push("custo variável não pode ser negativo");
+  if (String(data.nome ?? "").trim() === "") erros.push("nome do produto é obrigatório");
+  for (const [k, nome] of Object.entries(POSITIVOS)) {
+    const n = Number(data[k]); if (data[k] === "" || isNaN(n) || n <= 0) erros.push(`${nome} deve ser maior que 0`);
+  }
+  for (const [k, nome] of Object.entries(NAO_NEGATIVOS)) {
+    const n = Number(data[k]); if (data[k] === "" || isNaN(n) || n < 0) erros.push(`${nome} não pode ser negativo`);
+  }
+  const mix = ["A", "B", "C"].map((f) => data.mix?.[f] === "" ? NaN : Number(data.mix?.[f]));
+  if (mix.some((x) => isNaN(x) || x < 0 || x > 100)) erros.push("cada faixa do mix deve ficar entre 0% e 100%");
+  else if (Math.abs(mix.reduce((a, b) => a + b, 0) - 100) > 1e-9) erros.push("mix A/B/C deve somar 100%");
   return erros.length > 0 ? { ok: false, erros } : { ok: true, erros: [] };
 };

@@ -1,26 +1,27 @@
 import React from "react";
-import { validarProduto } from "../lib/schema.js";
+import { validarCarteira } from "../lib/schema.js";
 import { CampoFormulario } from "./CampoFormulario.jsx";
 import { ErrosValidacao } from "./ErrosValidacao.jsx";
 
+// Dados fictícios do enunciado: resultado atual de R$ 90.000
 export function FormularioBase({ onSubmit }) {
   const [formData, setFormData] = React.useState({
-    nome: "Produto Exemplo",
-    preco: 50,
-    quantidade: 100,
-    fixo: 2000,
-    variavel: 20
+    nome: "Empréstimo pessoal", contrato: 5000, receita: 200, contratos: 3000,
+    funding: 60, cobranca: 10, fixo: 150000, mix: { A: 40, B: 40, C: 20 }
   });
   const [erros, setErros] = React.useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((f) => ({ ...f, [name]: name === "nome" ? value : Number(value) || value }));
+    const v = name === "nome" || value === "" ? value : Number(value);
+    setFormData((f) => name.startsWith("mix.")
+      ? { ...f, mix: { ...f.mix, [name.slice(4)]: v } }
+      : { ...f, [name]: v });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validacao = validarProduto(formData);
+    const validacao = validarCarteira(formData);
     if (!validacao.ok) {
       setErros(validacao.erros);
       return;

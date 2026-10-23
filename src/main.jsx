@@ -16,7 +16,7 @@ function App() {
     <div className="container">
       <header>
         <h1>#15 Simulador de Decisões</h1>
-        <small>Um produto · um mês · 3 cenários</small>
+        <small>Fintech de crédito · uma carteira · um mês · 3 cenários</small>
       </header>
       {!base ? (
         <FormularioBase onSubmit={setBase} />

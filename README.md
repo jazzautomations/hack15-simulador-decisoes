@@ -70,3 +70,24 @@ src/
 ## Metodologia do time
 
 Como o squad multi-agente se organiza (worktrees, board, red team, cronograma 24h): [METODOLOGIA.md](METODOLOGIA.md)
+
+## Nicho: fintech de crédito
+
+| Desafio | Na carteira |
+|---|---|
+| Preço | receita mensal por contrato (juros + tarifa) |
+| Quantidade | contratos ativos no mês |
+| Custo variável | funding + perda esperada (mix A/B/C tabelado) + cobrança |
+| Custos fixos | time + tecnologia + compliance |
+
+Dados fictícios (já no formulário): contrato R$ 5.000, receita R$ 200, 3.000 contratos, variável R$ 120 (60 + 50 + 10), fixos R$ 150.000.
+
+| Cenário | Resultado |
+|---|---|
+| Atual | R$ 90.000 |
+| Desconto de 0,5 p.p. (receita R$ 175) | R$ 15.000 (−83%) |
+| Inadimplência +50% (perda R$ 75) | R$ 15.000 (−83%) |
+
+> "Dar 0,5 p.p. de desconto custa o mesmo que ver a inadimplência subir 50%."
+
+Cálculo em `src/lib/credito.js`, testes em `test/credito.test.js`. Scoring por ML e explicação por LLM ainda não foram implementados.
